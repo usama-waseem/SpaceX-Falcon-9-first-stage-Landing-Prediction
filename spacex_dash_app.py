@@ -21,14 +21,14 @@ app.layout = html.Div(children=[html.H1('SpaceX Launch Records Dashboard',
                                 # TASK 1: Add a dropdown list to enable Launch Site selection
                                 # The default select value is for ALL sites
                                 dcc.Dropdown(id='site-dropdown',
-                                            options=[{'label': 'All Sites', 'value': 'ALL',
-                                                    'label': 'CCAFS LC-40', 'value': 'CCAFS LC-40',
-                                                    'label': 'VAFB SLC-4E', 'value': 'VAFB SLC-4E',
-                                                    'label': 'KSC LC-39A', 'value': 'KSC LC-39A',
-                                                    'label': 'CCAFS SLC-40', 'value': 'CCAFS SLC-40'}],
+                                            options=[{'label': 'All Sites', 'value': 'ALL'},
+                                                    {'label': 'CCAFS LC-40', 'value': 'CCAFS LC-40'},
+                                                    {'label': 'VAFB SLC-4E', 'value': 'VAFB SLC-4E'},
+                                                    {'label': 'KSC LC-39A', 'value': 'KSC LC-39A'},
+                                                    {'label': 'CCAFS SLC-40', 'value': 'CCAFS SLC-40'}],
                                             value='ALL',
                                             placeholder='Select a Launch Site here',
-                                            searchable=True)
+                                            searchable=True),
                                 html.Br(),
 
                                 # TASK 2: Add a pie chart to show the total successful launches count for all sites
@@ -52,7 +52,7 @@ app.layout = html.Div(children=[html.H1('SpaceX Launch Records Dashboard',
 def get_pie_chart(entered_site):
     filtered_df = spacex_df
     if entered_site == 'ALL':
-        fig = px.pie(data, values='class',
+        fig = px.pie(filtered_df, values='class',
         names='Launch Sites',
         title='Total success launches for all sites')
         return fig
